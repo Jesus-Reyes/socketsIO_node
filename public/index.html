@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socker Server</title>
+</head>
+<body>
+    <h1>Acceso denegado</h1>
+    <script src="socket.io/socket.io.js"></script>
+    <script >
+
+        // Este es el cliente (FRONTEND)
+        // manda peticiones si encuentra comunicacion con el servidor 
+        var socket = io();
+        socket.on('connect', function(){
+            console.log('conectado al servidor');
+        });
+        socket.on('disconnect', function(){
+            console.log('Perdimos la comunicacion con el servidor');
+        });
+
+        socket.emit('mensaje', {
+            nombre: 'Jesus'
+        });
+        socket.on('mensaje', (payload)=> {
+            console.log('Escuchando:' , payload);
+        });
+    </script>
+</body>
+</html>
